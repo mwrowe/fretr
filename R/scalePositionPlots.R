@@ -1,18 +1,33 @@
+#' Fretboard Maps of Diatonic Chords Within a Scale
+#'
+#' Plot fretboards of a scale/mode, and its diatonic chords by position.
+#'
+#' @param tonic
+#'    Character value specifying tonic note of scale or model
+#' @param scale
+#'    Character value specifying scale or mode type.
+#' @param pdffile
+#'    Character value specifying path and file name of *.pdf output file.  If
+#'    omitted, save plot as "X type scale.pdf", where X is the tonic note and
+#'    type is the type of scale or mode name.  Set to NA to prevent a new file
+#'    from being opened and closed (to permit external control of graphics
+#'    device).
+#' @param in.context
+#'    Logical; if TRUE, indicate the positions of the other notes in the scale
+#'    that are not part of the chord as gray circles.
+#' @param by.5ths
+#'    Logical; if TRUE, order chords by the circle of 5ths, starting with the IV
+#'    chord.  If FALSE, order by scale degree, I - vii
+#'
+#' @return
+#'    Returns a fretNotes objects containing the all notes of the scale or
+#'    mode by fretboard position.
+#'
+#' @author M.W.Rowe, \email{mike.rowe@gmail.com}
+#'
+#' @export
+#'
 scalePositionPlots <-
-   # plot fretboards of a scale/mode, and its diatonic chords by position
-   #
-   # ARGUMENTS
-   #    tonic: character value specifying tonic note of scale or model
-   #    scale: character value specifying scale or mode type
-   #    pdffile: path and file name of *.pdf output file.  If omitted, save plot
-   #       as "X type scale.pdf", where X is the tonic note and type is the type
-   #       of scale or mode name.  Set to NA to prevent a new file from being
-   #       opened and closed (to permit external control of graphics device).
-   #    in.context: logical; if TRUE, indicate the positions of the other notes
-   #       in the scale that are not part of the chord as gray circles.
-#    by.5ths: logical; if TRUE, order chords by the circle of 5ths, starting
-#       with the IV chord.  If FALSE, order by scale degree, I - vii
-#
 function(tonic, scale="major", pdffile, in.context=FALSE, by.5ths=TRUE){
    roman <- c("i", "ii", "iii", "iv", "v", "vi", "vii")
    pch.chord <- c(22, 23, 23, 25, 24, 23, 23, 21, 23, 23, 23, 23)
@@ -138,8 +153,8 @@ function(tonic, scale="major", pdffile, in.context=FALSE, by.5ths=TRUE){
               tcl=0, tick=F)
          # deduce the CAGED chord shape
          shape <- notes[order(notes$chordnum, notes$fret, -notes$string), ]
-         #         cat("\n",chordname, " ", positions[posndx, "position"],":\n", sep="")
-         #         print(shape)
+         # cat("\n",chordname, " ", positions[posndx, "position"],":\n", sep="")
+         # print(shape)
          shape <- shape[1, "string"] - 1
          shape <- sub(rootnote, c("C","G","D","A","E")[shape], chordname)
          mtext(side=3, cex=0.7, col="gray40", paste0("(",shape," shape)"))
@@ -160,9 +175,9 @@ function(tonic, scale="major", pdffile, in.context=FALSE, by.5ths=TRUE){
       }
    }
    mtext(side=3, outer=T, line=2.5, adj=0, cex=1.7, titleCaps(paste("Diatonic",
-                                                                    "Chords of the", tonic, scale, "scale by fretboard position")))
+      "Chords of the", tonic, scale, "scale by fretboard position")))
    mtext(side=3, outer=T, line=3.25, adj=1, font=3, cex=0.7, col="gray30",
-         "Copyright Michael W. Rowe, 2019")
+      "Copyright Michael W. Rowe, 2019")
    if(!is.na(pdffile)) dev.off()
    invisible(scalenotes)
 }

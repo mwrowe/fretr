@@ -1,15 +1,28 @@
+#' Plot Major and Minor Chord Shapes by Fretboard Position
+#'
+#' Plot major and minor chord shapes, individually and within neck
+#
+#' @param tonic
+#'    Character value specifying root note of chord and tonic of scale.
+#' @param pdffile:
+#'    Character value specifying path and file name of *.pdf output file.  If
+#'    omitted, save plot as "X_chord_shapes.pdf", where X is the root note, with
+#'    a "7" appended if seven==TRUE.  Set to NA to prevent a new file from being
+#'    opened and closed (to permit external control of graphics device).
+#' @param in.context
+#'    Logical; if TRUE, indicate the positions of the other notes in the scale
+#'    that are not part of the chord as gray circles.
+#' @param seven
+#'    Logical; if TRUE, include the positions of the dominant/minor 7th.
+#'
+#' @return
+#'    Returns the notes of the chords as a fretNotes object.
+#'
+#' @author M.W.Rowe, \email{mike.rowe@gmail.com}
+#'
+#' @export
+#'
 chordShapePlots <-
-   # plot major and minor chord shapes, individually and within neck
-   #
-   # ARGUMENTS
-   #    tonic: character value specifying root note of chord and tonic of scale
-   #    pdffile: path and file name of *.pdf output file.  If omitted, save plot
-   #       as "X_chord_shapes.pdf", where X is the root note, with a "7" appended
-   #       if seven==TRUE.  Set to NA to prevent a new file from being opened and
-   #       closed (to permit external control of graphics device).
-   #    in.context: logical; if TRUE, indicate the positions of the other notes
-   #       in the scale that are not part of the chord as gray circles.
-   #    seven: if TRUE, include the positions of the dominant/minor 7th.
 function(tonic, pdffile, in.context=TRUE, seven=F){
    roman <- c("i", "ii", "iii", "iv", "v", "vi", "vii")
    pch.chord <- c(22, 23, 23, 25, 24, 23, 23, 21, 23, 23, 23, 23)
@@ -34,7 +47,6 @@ function(tonic, pdffile, in.context=TRUE, seven=F){
    }
    #dev.new(width=11, height=8.5)
    if(!is.na(pdffile))  pdf(file=pdffile, width=8.5, height=11, paper="a4")
-   #layout(matrix(c(rep(1:2,each=6), 2+1:5, 15, 9+1:5, 15, rep(9:8, each=6)), 6))
    layout(matrix(c(rep(1:2,each=5), 2+1:5, 9+1:5, rep(9:8, each=5)), 5))
    pentatonic <- list(major=c(0, 2, 4, 7, 9), minor=c(0, 3, 5, 7, 10))
    par(omi=c(0.,0.,0.75,0))
@@ -117,20 +129,20 @@ function(tonic, pdffile, in.context=TRUE, seven=F){
               tcl=0, tick=F)
          # deduce the CAGED chord shape
          shape <- notes[order(notes$chordnum, notes$fret, -notes$string), ]
-         #         cat("\n",chordname, " ", positions[posndx, "position"],":\n", sep="")
-         #         print(shape)
+         # cat("\n",chordname, " ", positions[posndx, "position"],":\n", sep="")
+         # print(shape)
          shape <- shape[1, "string"] - 1
          shape <- sub(rootnote, c("C","G","D","A","E")[shape], chordname)
          mtext(side=3, cex=1, col="gray40", paste0("(",shape," shape)"),
                line=ifelse(posndx==1 & fret.range[1]==0, -0.5, 0))
-         #         cat(posndx, sep="", ": ", fret.range[1], " to ", fret.range[2], "\n")
+         # cat(posndx, sep="", ": ", fret.range[1], " to ", fret.range[2], "\n")
          if(posndx==1){
             mtext(paste(scale, "\npositions"), side=3, line=1, cex=1.2)
          }
       }
    }
    mtext(side=3, outer=T, line=1.75, adj=0, cex=1.7, titleCaps(paste(tonic,
-                                                                     "Major and Minor Chord Shapes by fretboard position")))
+      "Major and Minor Chord Shapes by fretboard position")))
    mtext(side=3, outer=T, line=3.25, adj=1, font=3, cex=0.7, col="gray30",
          "Copyright Michael W. Rowe, 2019")
    if(!is.na(pdffile))  dev.off()

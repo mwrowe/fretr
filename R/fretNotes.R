@@ -1,18 +1,41 @@
-fretNotes <-
-   # assign scale notes to positions of a fretboard
-   #
-   # ARGUMENTS
-   #    n.frets: integer; number of frets on the fretboard (not counting the nut)
-   #    key: character value specifying tonic of the scale
-   #    scale: character value specifying scale type; currently "major" or "minor"
-   #    tuning: character vector of length 4 to 8, specifing number and tuning of
-   #       strings from lowest to highest by note; default is standard guitar,
-   #       c("E","A","D","G","B","E")
-   #
-   # VALUE
-#    Returns a fretNotes object, a data.frame with one row per fretboard
-#    position (fret/string combination), and named columns:
+#' Assign scale notes to positions of a fretboard
 #
+#' @param n.frets
+#'    Integer; number of frets on the fretboard (not counting the nut).
+#' @param key
+#'    Character value specifying tonic of the scale.
+#' @param scale:
+#'    Character value specifying scale type; currently "major" or "minor".
+#' @param tuning
+#'    Character vector of length 4 to 8, specifing number and tuning of
+#'    strings from lowest to highest by note; default is standard guitar,
+#'    c("E","A","D","G","B","E").
+#
+#' @return
+#'    Returns a fretNotes object, a data.frame with one row per fretboard
+#'    position (fret/string combination), and named columns:
+#'    \itemize{
+#'       \item \emph{string}: Integer, 1 to number of strings, high to low.
+#'       \item \emph{fret}: Integer, fret number, where 0 is the nut.
+#'       \item \emph{at}: Number, distance from the nut in inches.
+#'       \item \emph{notenum}: Integer, note number within the scale.
+#'       \item \emph{note}: Character value, note name.
+#'       \item \emph{semitone}: Integer value, interval (in semitones) relative
+#'          to tonic.
+#'    }
+#'    The object will be assigned attributes:
+#'    \itemize{
+#'       \item \emph{key}: character value; tonic of the scale.
+#'       \item \emph{scale}: character value; scale type.
+#'       \item \emph{scalenotes}:
+#'       \item \emph{fretrange}:
+#'    }
+#'
+#' @author M.W.Rowe, \email{mike.rowe@gmail.com}
+#'
+#' @export
+#'
+fretNotes <-
 function(key="E", scale="major", n.frets=22, tuning=c("E","A","D","G","B","E")){
    # define notes, scales
    notes <- c(E=0, F=1, "F#"=2, Gb=2, G=3, "G#"=4, Ab=4, A=5, "A#"=6, Bb=6, B=7,

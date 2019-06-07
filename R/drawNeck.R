@@ -1,18 +1,28 @@
-drawNeck <-
-   # calculate fret spacing and draw empty fretboard
-   #
-   # ARGUMENTS
-   #    frets: data.frame returned by fretNotes() function, which will specify
-   #       numbers of frets and strings
-   #    fret.space: numeric or character value specifying how evenly the frets
-   #       are spaced; valid character values are:
-   #          "accurate" (=12), "even" (=1000) or between (=24)
-   #    fret.range: 2-element numeric vector, specifying range of frets to draw
-   #    decorations: logical; should decorative dots be placed between some frets?
-   #    scale.length: numeric value specifying distance from nut to bridge in
-#       inches
+#' Draw A Fretboard
+#'
+#' Calculate fret spacing and draw an empty fretboard.
 #
-# VALUE: returns a named vector of the fret positions, with names from "0"
+#' @param frets
+#'    Data.frame returned by fretNotes() function, which will specify numbers
+#'    of frets and strings
+#' @param fret.space
+#'    Numeric or character value specifying how evenly the frets are spaced;
+#'    valid character values are: "accurate" (=12), "even" (=1000) or "between"
+#'    (=24).
+#' @param fret.range
+#'    2-element numeric vector, specifying range of frets to draw.
+#' @param decorations
+#'    Logical; should decorative dots be placed between some frets?
+#' @param scale.length
+#'    Numeric value specifying distance from nut to bridge in inches.
+#
+#' @return
+#'    Returns a named vector of the fret positions, with names from "0".
+#'
+#' @author M.W.Rowe, \email{mike.rowe@gmail.com}
+#'
+#' @export
+drawNeck <-
 function(frets, fret.space="between", fret.range, decorations=TRUE,
          scale.length=25.5){
    if(!"fretNotes"%in%class(frets)){
@@ -40,9 +50,9 @@ function(frets, fret.space="between", fret.range, decorations=TRUE,
    # plot frets
    to.plot <- frets.at[which(frets.at>=0)]
    matplot(matrix(0.5 + c(0,n.strings), 2, length(to.plot)),
-           rbind(to.plot, to.plot), lty=1, type="l", yaxs="i", xaxs="i", axes=F,
-           xlab="", ylab="", xlim=0.5+c(n.strings,0), ylim=ylim+dylim,
-           lwd=ifelse(to.plot==0, 5, 2), col=ifelse(to.plot==0, "gray50", "gray70"))
+      rbind(to.plot, to.plot), lty=1, type="l", yaxs="i", xaxs="i", axes=F,
+      xlab="", ylab="", xlim=0.5+c(n.strings,0), ylim=ylim+dylim,
+      lwd=ifelse(to.plot==0, 5, 2), col=ifelse(to.plot==0, "gray50", "gray70"))
    # add strings
    matlines(matrix(rep(1:n.strings,each=2),2),
             matrix(range(to.plot),2,n.strings), col="gray85",lty=1, lwd=1)
