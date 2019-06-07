@@ -1,0 +1,70 @@
+chordNotesByType <-
+   # get notes of an arbitrary chord, without regards to underlaying scale/mode
+   #
+   # ARGUMENTS
+   #    scalenotes: data.frame() of notes assigned to each fretboard position,
+   #       numbered and named according to the underlying scale, such as generated
+   #       by the fretNotes() function.
+   #    type: character value specifying a particular chord type by abbreviation.
+   #       Currently supported types are: "maj", "min", "dim", "aug", "sus2",
+   #       "sus4", "maj7", "dom7", "min7", "halfdim7", "dim7", "minmaj7", "aug7"
+   #     root: character value specifying the root note of the chord.  If
+   #        unspecified, the tonic note (key) of the scale will be used.
+#
+# VALUE
+#    Returns a fretNotes (data.frame) object with the subset of the scalenotes
+#    argument found in the specified chord, with a chordnum column appended,
+#    plus named attributes "rootnote", "notes" (data.frame), "type" and "name".
+#
+function(scalenotes, type="maj", root){
+   chordtypes <- list(   # list of successive intervals for each chord type
+      maj      = c(4, 3),
+      min      = c(3, 4),
+      dim      = c(3, 3),
+      aug      = c(4, 4),
+      sus2     = c(2, 5),
+      sus4     = c(5, 2),
+      maj7     = c(4, 3, 4),
+      dom7     = c(4, 3, 3),
+      min7     = c(3, 4, 3),
+      halfdim7 = c(3, 3, 4),
+      dim7     = c(3, 3, 3),
+      minmaj7  = c(3, 4, 4),
+      aug7     = c(4, 4, 3))
+   if(missing(scalenotes)) return(chordtypes)
+   if(!type%in%names(chordtypes)){
+      stop("Chord type not recognized.")
+   }
+   if(missing(root)){
+      rootnum <- 0
+      root <- scalenotes[which(scalenotes$semitone==rootnum)[1], "note"]
+   }else{
+      if(!root%in%scalenotes$note) stop("root is not a recognized note.")
+      rootnum <- scalenotes[which(scalenotes$note==root)[1], "semitone"]
+   }
+   scale <- unique(
+      scalenotes[!is.na(scalenotes$scalenum), c("semitone", "scalenum", "note")])
+   scale <-  scale[order(scale$semitone), "note"]
+   semitones <- c(rootnum, cumsum(chordtypes[[type]]))%%12
+   chordnotes <- scalenotes[which(scalenotes$semitone%in%semitones),
+                            c("note", "semitone", "scalenum", "string", "fret", "at", "notenum","bg")]
+   chordnotes <- chordnotes[order(chordnotes$fret, -chordnotes$string), ]
+   chordnotes$chordnum <- match(substr(chordnotes$note,1,1), substr(scale,1,1))
+   # create data.frame with just unique chord notes
+   chord <- unique(chordnotes[, c("note", "chordnum", "semitone")])
+   chord <- chord[order(chord$chordnum), ]
+   chord$semitone <- (chord$semitone - chord$semitone[1])%%12 + 1
+   chord$interval <- c(0, diff(chord$semitone))
+   chord$interval <- c("-", "min2", "maj2", "min3", "maj3", "perf4",
+                       "dim5", "perf5", "min6", "maj6", "min7", "maj7")[chord$interval+1]
+   rownames(chord) <- chord$note
+   # add information as attributes to the chordnotes data.frame
+   rownames(chordnotes) <- NULL
+   attr(chordnotes, "rootnote") <- root
+   attr(chordnotes, "notes") <- chord
+   attr(chordnotes, "type") <- type
+   attr(chordnotes, "name") <-
+      paste0(root, sub("min", "m", sub("(maj$|dom)", "", type)))
+   class(chordnotes) <- c("fretNotes", "data.frame")
+   chordnotes
+}

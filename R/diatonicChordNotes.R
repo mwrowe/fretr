@@ -1,0 +1,55 @@
+diatonicChordNotes <-
+   # find the notes of a diatonic chord within its scale, given the root note
+   #
+   # ARGUMENTS
+   #    scalenotes: data.frame() of notes assigned to each fretboard position,
+   #       numbered and named according to the underlying scale, such as generated
+   #       by the fretNotes() function.
+   #    root: integer value specifying the root by number relative to the scale
+   #       from 1 to 7.
+   #    seven: logical; if TRUE, add the 7th of the chord to the triad
+   #
+   # VALUE
+#    Returns a fretNotes (data.frame) object with the subset of the scalenotes
+#    argument found in the specified chord, with a chordnum column appended,
+#    plus named attributes "rootnote", "notes" (data.frame), "type" and "name".
+#
+function(scalenotes, root=1, seven=F){
+   notes <- unique(scalenotes[!is.na(scalenotes$scalenum),
+                              c("semitone","scalenum","note")])
+   notes <- notes[order(notes$semitone), ]
+   if(is.numeric(root)){
+      root <- (root-1)%%8 + 1
+      rootnote <- notes[match(root, notes$scalenum), "note"]
+   }else if(root%in%notes$note){
+      rootnote <- root
+      root <- notes[match(rootnote, notes$note), "scalenum"]
+   }else stop("Invalid root: must be a number 1-7 or a note in the scale.")
+   notes$chordnum <- (notes$scalenum - root)%%7 + 1
+   if(seven){
+      notes <- notes[which(notes$chordnum%in%c(1,3,5,7)), ]
+   }else{
+      notes <- notes[which(notes$chordnum%in%c(1,3,5)), ]
+   }
+   scalenotes <- merge(scalenotes, notes, sort=F)
+   scalenotes <- scalenotes[order(scalenotes$fret, -scalenotes$string), ]
+   chord <- unique(scalenotes[, c("note", "chordnum", "semitone")])
+   chord <- chord[order(chord$chordnum), ]
+   chord$semitone <- (chord$semitone - chord$semitone[1])%%12 + 1
+   chord$interval <- c(0, diff(chord$semitone))
+   chordtypes <- c("43"="maj", "34"="min", "33"="dim", "44"="aug", "433"="dom7",
+                   "434"="maj7", "343"="min7", "344"="minmaj7", "333"="dim7",
+                   "334"="halfdim7", "443"="aug7")
+   chordtype <- chordtypes[paste0(chord[-1,"interval"], collapse="")]
+   chord$interval <-
+      ifelse(chord$interval==3, "min3", ifelse(chord$interval==4, "maj3", "-"))
+   rownames(chord) <- chord$note
+   rownames(scalenotes) <- NULL
+   attr(scalenotes, "rootnote") <- rootnote
+   attr(scalenotes, "notes") <- chord
+   attr(scalenotes, "type") <- chordtype
+   attr(scalenotes, "name") <-
+      paste0(rootnote, sub("min", "m", sub("(maj$|dom)", "", chordtype)))
+   class(scalenotes) <- c("fretNotes", "data.frame")
+   scalenotes
+}
