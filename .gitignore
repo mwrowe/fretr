@@ -1,1 +1,6 @@
 .Rproj.user
+# do not track documentation (man/*.Rd) or script output (*.pdf)
+/man
+.Rd
+/output
+.pdf
