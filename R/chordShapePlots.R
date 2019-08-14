@@ -4,7 +4,7 @@
 #
 #' @param tonic
 #'    Character value specifying root note of chord and tonic of scale.
-#' @param pdffile:
+#' @param pdffile
 #'    Character value specifying path and file name of *.pdf output file.  If
 #'    omitted, save plot as "X_chord_shapes.pdf", where X is the root note, with
 #'    a "7" appended if seven==TRUE.  Set to NA to prevent a new file from being

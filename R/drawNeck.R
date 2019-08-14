@@ -33,7 +33,7 @@ function(frets, fret.space="between", fret.range, decorations=TRUE,
    n.strings <- max(frets$string)
    spacings <- c(accurate=12, even=1000, between=24)
    if(fret.space%in%names(spacings)) fret.space <- spacings[fret.space]
-   if(!is.numeric(fret.space)) error("invalid fret.space argument")
+   if(!is.numeric(fret.space)) stop("invalid fret.space argument")
    frets.at <- scale.length - scale.length / 2^(-1:n.frets/fret.space)
    frets$at <- frets.at[frets$fret+2]
    # draw the guitar neck

@@ -85,13 +85,14 @@ function(notes, params=list()){
       params[[Li]] <- defaults[[Li]]
    }
    # where unspecified, apply defaults to notes and context
-   note.params <- grep("\\.notes$", names(params), v=T)
+   note.params <- grep("\\.notes$", names(params), value=T)
    note.params <-
       structure(names=sub("\\.notes$", "", note.params), note.params)
    for(Li in setdiff(names(note.params), names(notes))){
       notes[, Li] <- params[[note.params[Li]]]
    }
-   for(Li in setdiff(grep("\\.context$", names(params), v=T), names(notes))){
+   these <- setdiff(grep("\\.context$", names(params), value=T), names(notes))
+   for(Li in these){
       notes[, Li] <- params[[Li]]
    }
    # generate fretstring and find 1st occurrence of each shape

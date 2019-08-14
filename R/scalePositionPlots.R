@@ -128,12 +128,12 @@ function(tonic, scale="major", pdffile, in.context=FALSE, by.5ths=TRUE){
                                      "string"])
             to.adjust <- which(notes$chordnum==1
                                & notes$string%in%names(perstring[perstring>1]))
-            adjustcolor(notes[to.adjust, "bg"], alpha=0.2)
+            adjustcolor(notes[to.adjust, "bg"], alpha.f=0.2)
             notes[to.adjust, "bg"] <-
-               adjustcolor(notes[to.adjust, "bg"], alpha=0.3)
+               adjustcolor(notes[to.adjust, "bg"], alpha.f=0.3)
             notes$col <- "black"
             notes[to.adjust, "col"] <-
-               adjustcolor(notes[to.adjust, "col"], alpha=0.3)
+               adjustcolor(notes[to.adjust, "col"], alpha.f=0.3)
          }
          drawNotes(notes, frets.at)
          if(in.context){

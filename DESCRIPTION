@@ -12,7 +12,7 @@ Description:
    of a stringed instrument, such as a guitar.  Typical uses would be to 
    illustrate all the positions at which a particular chord or scale can be
    played, or relationships between scales, modes and chords.
-Depends: R (>= 3.5.1)
+Depends: R (>= 3.3.0), utils, grDevices, graphics, stats
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

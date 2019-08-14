@@ -7,22 +7,6 @@
 # Created Apr 11, 2018
 # Author: M.W.Rowe
 #===============================================================================
-cleanSearch()
-if("minions"%in%ls()) killMinions(minions)
-rm(list=ls())
-graphics.off()
-# load standard packages; set up parallel computation
-pkgs <- c("parallel","doParallel","foreach")
-success <- loadPackages(pkgs)
-# set up I/O for the local environment
-today <- yyyymmdd()
-HT.dir <- Sys.getenv("HT_TOP_DIR")
-Rscript.file <- "20180411_Fretboards.R"
-out.dir <- "/Users/mike.rowe/Documents/Junk/Guitar/Fretboard Maps/"
-#out.file <- "20180411_Fretboards.RData"
-#out.dir <- paste(HT.dir,sep="","Analysis/",sub("\\.RData$","",out.file),"/")
-success <- prepDir(out.dir)
-setwd(out.dir)
 #-------------------------------------------------------------------------------
 #identifyScaleShape <-
 ## given a cluster of notes within a few frets, identify the chord/scale shape
@@ -40,23 +24,25 @@ setwd(out.dir)
 #}
 #===============================================================================
 # END OF FUNCTION DEFINITIONS; DRAW FRETBOARDS!!!
-modes <-
+out.dir <- file.path(getwd(), "Scripts")
+outmodes <-
    c("ionian","mixolydian","dorian","aeolian","phrygian","locrian","lydian")
 # generate major/minor chord shape plots for each root in a single file
 graphics.off()
 seven <- TRUE
-pdffile <-
-   paste0("maj", ifelse(seven,"7-min7", "or-minor"), " chord shapes.pdf")
+pdffile <- file.path(out.dir,
+   paste0("maj", ifelse(seven,"7-min7", "or-minor"), " chord shapes.pdf"))
 pdf(file=pdffile,  width=8.5, height=11, paper="a4", onefile=TRUE)
 for(key in c("F","C","G","D","A","E","B","F#","Db","Ab","Eb","Bb")){
    chordShapePlots(key, in.context=T, pdffile=NA, seven=seven)
 }
 dev.off()
-# generate scale positions plots for each tonic in a single file
+# generate scale position plots for each tonic in a single file
 graphics.off()
 for(by.5ths in c(T, F)){
-   pdf(file=paste0("major scale fretboards", ifelse(by.5ths, " by 5ths", ""),
-      ".pdf"), width=11, height=8.5, paper="a4r", onefile=TRUE)
+   pdffile <- file.path(out.dir,
+      paste0("major scale fretboards", ifelse(by.5ths, " by 5ths", ""), ".pdf"))
+   pdf(file=pdffile, width=11, height=8.5, paper="a4r", onefile=TRUE)
    for(key in c("F","C","G","D","A","E","B","F#","Db","Ab","Eb","Bb")){
       scalePositionPlots(key, in.context=T, pdffile=NA, by.5ths=by.5ths)
    }
@@ -65,40 +51,40 @@ for(by.5ths in c(T, F)){
 
 # generate relative scale plots for each tonic in a single file
 graphics.off()
-pdf(file="parallel scale fretboards.pdf", width=11, height=8.5, paper="a4r",
-   onefile=TRUE)
+
+pdf(file=file.path(out.dir, "parallel scale fretboards.pdf"),
+    width=11, height=8.5, paper="a4r", onefile=TRUE)
 for(key in c("F","C","G","D","A","E","B","F#","Db","Ab","Eb","Bb")){
    parallelModePlots(key, pdffile=NA)
 }
 dev.off()
 
-browser()
 #===============================================================================
 # HALF BAKED STUFF...
-# generate scale position plots
-graphics.off()
-for(key in c("F","C","G","D","A","E","B","F#","Db","Ab","Eb","Bb")){
-   scalePositionPlots(key, in.context=T)
-   chordShapePlots(key, in.context=T)
-}
-#scalePositionPlots("B", scale="mixolydian")
-# single fretboard figure
-graphics.off()
-dev.new(width=0.75,height=7)
-par(mar=rep(0.1,4))
-tonic <- "G"
-scale <- "major"
-#pch.chord <- c(22, 23, 23, 25, 24, 23, 23, 21, 23, 23, 23, 23)
-bg.scalenum <-  c("blue", "orange", "cornflowerblue", "green3", "purple",
-      "forestgreen", "red")
-scalenotes <- fretNotes(key=tonic, scale=scale)
-scalenotes$bg <- bg.scalenum[scalenotes$scalenum]
-positions <- findPositions(scalenotes)
-frets.at <- drawNeck(scalenotes, fret.space="even")
-notes <- scalenotes[!is.na(scalenotes$scalenum), ]
-drawNotes(notes, frets.at)
-axis(2, at=frets.at[as.char(positions$fret)], positions$fret, las=1,
-      cex.axis=0.5, mgp=c(1, 0.1, 0), tcl=0, tick=F)
+# # generate scale position plots
+# graphics.off()
+# for(key in c("F","C","G","D","A","E","B","F#","Db","Ab","Eb","Bb")){
+#    scalePositionPlots(key, in.context=T)
+#    chordShapePlots(key, in.context=T)
+# }
+# #scalePositionPlots("B", scale="mixolydian")
+# # single fretboard figure
+# graphics.off()
+# dev.new(width=0.75,height=7)
+# par(mar=rep(0.1,4))
+# tonic <- "G"
+# scale <- "major"
+# #pch.chord <- c(22, 23, 23, 25, 24, 23, 23, 21, 23, 23, 23, 23)
+# bg.scalenum <-  c("blue", "orange", "cornflowerblue", "green3", "purple",
+#       "forestgreen", "red")
+# scalenotes <- fretNotes(key=tonic, scale=scale)
+# scalenotes$bg <- bg.scalenum[scalenotes$scalenum]
+# positions <- findPositions(scalenotes)
+# frets.at <- drawNeck(scalenotes, fret.space="even")
+# notes <- scalenotes[!is.na(scalenotes$scalenum), ]
+# drawNotes(notes, frets.at)
+# axis(2, at=frets.at[as.char(positions$fret)], positions$fret, las=1,
+#       cex.axis=0.5, mgp=c(1, 0.1, 0), tcl=0, tick=F)
 
 ## eight-fretboard figure
 #graphics.off()
