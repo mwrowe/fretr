@@ -24,7 +24,7 @@
 #}
 #===============================================================================
 # END OF FUNCTION DEFINITIONS; DRAW FRETBOARDS!!!
-out.dir <- file.path(getwd(), "Scripts")
+out.dir <- file.path(getwd(), "output")
 outmodes <-
    c("ionian","mixolydian","dorian","aeolian","phrygian","locrian","lydian")
 # generate major/minor chord shape plots for each root in a single file
@@ -39,12 +39,13 @@ for(key in c("F","C","G","D","A","E","B","F#","Db","Ab","Eb","Bb")){
 dev.off()
 # generate scale position plots for each tonic in a single file
 graphics.off()
-for(by.5ths in c(T, F)){
-   pdffile <- file.path(out.dir,
-      paste0("major scale fretboards", ifelse(by.5ths, " by 5ths", ""), ".pdf"))
+for(chorder in c("numeric", "5ths", "4ths")){
+   suffix <- ifelse(chorder%in%c("4ths", "5ths"), paste0(" by ", chorder), "")
+   pdffile <-
+      file.path(out.dir, paste0("major scale fretboards", suffix, ".pdf"))
    pdf(file=pdffile, width=11, height=8.5, paper="a4r", onefile=TRUE)
    for(key in c("F","C","G","D","A","E","B","F#","Db","Ab","Eb","Bb")){
-      scalePositionPlots(key, in.context=T, pdffile=NA, by.5ths=by.5ths)
+      scalePositionPlots(key, in.context=T, pdffile=NA, chorder=chorder)
    }
    dev.off()
 }

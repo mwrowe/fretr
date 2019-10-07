@@ -15,9 +15,10 @@
 #' @param in.context
 #'    Logical; if TRUE, indicate the positions of the other notes in the scale
 #'    that are not part of the chord as gray circles.
-#' @param by.5ths
-#'    Logical; if TRUE, order chords by the circle of 5ths, starting with the IV
-#'    chord.  If FALSE, order by scale degree, I - vii
+#' @param chorder
+#'    Character value, specifying order of chords.
+#'    If "4ths", IV-I-V-ii-vi-iii-V7; if "5ths", IV-V7-iii-vi-ii-V-I.
+#'    Otherwise, order by scale degree, I - vii
 #'
 #' @return
 #'    Returns a fretNotes objects containing the all notes of the scale or
@@ -28,15 +29,15 @@
 #' @export
 #'
 scalePositionPlots <-
-function(tonic, scale="major", pdffile, in.context=FALSE, by.5ths=TRUE){
+function(tonic, scale="major", pdffile, in.context=FALSE, chorder="5ths"){
    roman <- c("i", "ii", "iii", "iv", "v", "vi", "vii")
    pch.chord <- c(22, 23, 23, 25, 24, 23, 23, 21, 23, 23, 23, 23)
    bg.scalenum <-  c("blue", "orange", "cornflowerblue", "green3", "purple",
                      "forestgreen", "red")
    # set up the graphics device to plot 8 fretboards
    if(missing(pdffile)){
-      pdffile <-
-         paste(tonic, scale, "scale", ifelse(by.5ths, "_by5ths", ""), ".pdf")
+      suffix <- ifelse(chorder%in%c("4ths", "5ths"), paste0(" by ", chorder), "")
+      pdffile <- paste0(tonic, " " , scale, " scale", suffix, ".pdf")
    }
    if(!is.na(pdffile)) pdf(file=pdffile, width=11, height=8.5, paper="a4r")
    layout(matrix(c(rep(0,5), 1:45)+1, 5))
@@ -99,7 +100,10 @@ function(tonic, scale="major", pdffile, in.context=FALSE, by.5ths=TRUE){
       }
    }
    # loop through diatonic chords and plot each position
-   if(by.5ths) chorder <- c(4, 1, 5, 2, 6, 3, 7) else chorder <- 1:7
+   chorder <- switch(chorder,
+                     "4ths"=c(4, 1, 5, 2, 6, 3, 7),
+                     "5ths"=c(4, 7, 3, 6, 2, 5, 1),
+                     1:7)
    for(root in chorder){
       seven <- FALSE
       if(root==7){

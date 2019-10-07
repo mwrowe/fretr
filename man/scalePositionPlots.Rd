@@ -5,7 +5,7 @@
 \title{Fretboard Maps of Diatonic Chords Within a Scale}
 \usage{
 scalePositionPlots(tonic, scale = "major", pdffile, in.context = FALSE,
-  by.5ths = TRUE)
+  chorder = "5ths")
 }
 \arguments{
 \item{tonic}{Character value specifying tonic note of scale or model}
@@ -21,8 +21,9 @@ device).}
 \item{in.context}{Logical; if TRUE, indicate the positions of the other notes in the scale
 that are not part of the chord as gray circles.}
 
-\item{by.5ths}{Logical; if TRUE, order chords by the circle of 5ths, starting with the IV
-chord.  If FALSE, order by scale degree, I - vii}
+\item{chorder}{Character value, specifying order of chords.
+If "4ths", IV-I-V-ii-vi-iii-V7; if "5ths", IV-V7-iii-vi-ii-V-I.
+Otherwise, order by scale degree, I - vii}
 }
 \value{
 Returns a fretNotes objects containing the all notes of the scale or
