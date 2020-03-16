@@ -1,6 +1,6 @@
 Package: fretr
 Title: Generate Fretboard Maps of Scales and Chords
-Version: 0.1.0.20200316
+Version: 0.2.0.20200316
 Authors@R: 
     person(given = "Michael",
            family = "Rowe",
@@ -17,3 +17,7 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.0.2
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

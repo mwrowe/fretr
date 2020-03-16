@@ -6,3 +6,5 @@
 ^output$
 ^scripts$
 ^.idea$
+^doc$
+^Meta$

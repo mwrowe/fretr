@@ -1,0 +1,126 @@
+---
+title: "Using the fretr Package to Draw Guitar Fretboards"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{fretr-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+This vignette will run a few examples of the high-level fretboard map  functions in the fretr package, plus give you some example code (that is __not__ run) to show you how to generate sets of fretboard maps saved to a *.pdf file.
+
+To understand how the lower-level functions work, examine the source code of
+these high-level functions: 
+
+* `chordShapePlots()`
+* `scalePositionPlots()`
+* `parallelModePlots()`
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(fretr)
+```
+
+## chordShapePlots()
+
+Chord shape plots show the locations of the CAGED chord shapes for a given 
+root note.  Both the major and minor shapes are shown, as well as the notes of
+the corresponding major and minor scales.
+
+Here is an example of how to set up a graphics device to plot to:
+```{r, eval = FALSE}
+# plot to the default device (not run by the vignette)
+dev.new(noRStudioGD = TRUE, width=8.5, height=11)
+```
+
+```{r, fig.width = 8.5, fig.height = 11}
+# Generate fretboard maps of major and minor chords in the key of G
+chordShapePlots("G", in.context=T, pdffile=NA, seven=FALSE)
+```
+
+Here is some code (__not__ run) that will generate a set of these fretboard maps in a single *.pdf file, including the 7ths of each chord:
+
+```{r, eval = FALSE}
+out.dir <- file.path(getwd(), "fretr_output")
+if(!dir.exists(out.dir)) dir.create(out.dir)
+
+# generate major/minor chord shape plots for each root in a single file
+seven <- TRUE
+pdffile <- file.path(out.dir,
+   paste0("maj", ifelse(seven,"7-min7", "or-minor"), " chord shapes.pdf"))
+pdf(file=pdffile,  width=8.5, height=11, paper="a4", onefile=TRUE)
+for(key in c("F","C","G","D","A","E","B","F#","Db","Ab","Eb","Bb")){
+   chordShapePlots(key, in.context=T, pdffile=NA, seven=seven)
+}
+dev.off()
+```
+
+## scalePositionPlots()
+
+Scale position plots show all the chords in a given key (the diatonic chords),
+and how they relate to the notes of the scale and the corresponding major
+pentatonic scale.  In each case, chord diagrams are shown according to the 
+CAGED chord shapes.  Note that in these plots, position 1 corresponds to the 
+E shape chord of the I chord, where the middle finger plays the root on the 
+sixth string.
+
+First, you would change the orientation of the device, so it is wider:
+```{r, eval = FALSE}
+# plot to the default device (not run)
+dev.new(noRStudioGD = TRUE, width=11, height=8.5)
+```
+
+```{r, fig.width = 11, fig.height = 8.5}
+scalePositionPlots("G", in.context=T, pdffile=NA, chorder="numeric")
+```
+
+Here is some code (__not__ run) that will generate sets of these fretboard maps, 
+each in a single *.pdf file with all keys.  The three sets differ by how they order the chords within each key: numerically, by fourths or by fifths:
+
+```{r, eval = FALSE}
+# generate scale position plots for each tonic in a single file
+for(chorder in c("numeric", "5ths", "4ths")){
+   suffix <- ifelse(chorder%in%c("4ths", "5ths"), paste0(" by ", chorder), "")
+   pdffile <-
+      file.path(out.dir, paste0("major scale fretboards", suffix, ".pdf"))
+   pdf(file=pdffile, width=11, height=8.5, paper="a4r", onefile=TRUE)
+   for(key in c("F","C","G","D","A","E","B","F#","Db","Ab","Eb","Bb")){
+      scalePositionPlots(key, in.context=T, pdffile=NA, chorder=chorder)
+   }
+   dev.off()
+}
+```
+
+## parallelModePlots()
+
+Parallel mode plots emphasize how the modes of a given tonic note relate to 
+each other.  They are arranged from the "brightest" mode, lydian, to the \"darkest\" mode, locrian, such that only a single note changes between each mode. The ionian mode (i.e. the major scale) is highlighted.
+
+Also use horizontal orientation for these plots:
+```{r, eval = FALSE}
+# plot to the default device (not run)
+dev.new(noRStudioGD = TRUE, width=11, height=8.5)
+```
+
+```{r, fig.width = 11, fig.height = 8.5}
+# generate plots of the modes with G as their tonic note:
+parallelModePlots("G", pdffile=NA)
+```
+
+Here is some code (__not__ run) that will generate parallel scale fretboard maps in each key:
+
+```{r, eval = FALSE}
+# generate parallel mode plots for each tonic in a single file
+pdf(file=file.path(out.dir, "parallel scale fretboards.pdf"),
+    width=11, height=8.5, paper="a4r", onefile=TRUE)
+for(key in c("F","C","G","D","A","E","B","F#","Db","Ab","Eb","Bb")){
+   parallelModePlots(key, pdffile=NA)
+}
+dev.off()
+```
