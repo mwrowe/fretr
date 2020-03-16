@@ -2,7 +2,7 @@
 % Please edit documentation in R/fretNotes.R
 \name{fretNotes}
 \alias{fretNotes}
-\title{Assign scale notes to positions of a fretboard}
+\title{Assign Scale Notes To Positions of a Fretboard.}
 \usage{
 fretNotes(
   key = "E",
@@ -43,7 +43,8 @@ Returns a fretNotes object, a data.frame with one row per fretboard
    }
 }
 \description{
-Assign scale notes to positions of a fretboard
+Assign scale notes to positions of a fretboard given instrument parameters
+(number of strings, frets and tuning) and major or minor key.
 }
 \author{
 M.W.Rowe, \email{mwr.stats@gmail.com}

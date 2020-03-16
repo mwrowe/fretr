@@ -2,7 +2,7 @@
 % Please edit documentation in R/plotFretboardByPosition.R
 \name{plotFretboardByPosition}
 \alias{plotFretboardByPosition}
-\title{Plot whole fretboard with positions separated by offset; join frets in common}
+\title{Plot whole fretboard with positions separated by offset.}
 \usage{
 plotFretboardByPosition(notes, params = list())
 }
@@ -54,7 +54,8 @@ notes to mark but not label (like scale notes around chord notes):
 Returns frets.
 }
 \description{
-Plot whole fretboard with positions separated by offset; join frets in common
+Plot whole fretboard with positions separated by offset; join the frets in
+common.
 }
 \author{
 M.W.Rowe, \email{mwr.stats@gmail.com}

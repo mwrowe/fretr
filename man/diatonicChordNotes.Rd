@@ -2,7 +2,7 @@
 % Please edit documentation in R/diatonicChordNotes.R
 \name{diatonicChordNotes}
 \alias{diatonicChordNotes}
-\title{Find the notes of a diatonic chord within its scale, given the root note}
+\title{Find the notes of a diatonic chord within its scale, given the root note.}
 \usage{
 diatonicChordNotes(scalenotes, root = 1, seven = F)
 }
@@ -22,7 +22,7 @@ Returns a fretNotes (data.frame) object with the subset of the scalenotes
    plus named attributes "rootnote", "notes" (data.frame), "type" and "name".
 }
 \description{
-Find the notes of a diatonic chord within its scale, given the root note
+Find the notes of a diatonic chord within its scale, given the root note.
 }
 \author{
 M.W.Rowe, \email{mwr.stats@gmail.com}

@@ -1,7 +1,7 @@
 findPositions <-
 #' Find CAGED Chord Positions
 #'
-#' find CAGED chord/scale positions along the fretboard for the present scale.
+#' Find CAGED chord/scale positions along the fretboard for the present scale.
 #'
 #' @details
 #' Position 1 is defined where the tonic note falls under the middle finger

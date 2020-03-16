@@ -8,7 +8,9 @@
 This package draws "fretboard maps", positions of notes along the fretboard
 of a stringed instrument, such as a guitar.  Typical uses would be to
 illustrate all the positions at which a particular chord or scale can be
-played, or relationships between scales, modes and chords.
+played, or relationships between scales, modes and chords.  These functions
+have not been tested extensively except for 6-string guitar in standard
+tuning-- caveat emptor.
 }
 \section{Fretboard Map Functions}{
 
@@ -41,13 +43,36 @@ the scales, chords and their notes.
 
 \itemize{
   \item \code{\link{fretNotes}}:
-  \item \code{\link{diatonicChordNotes}}
-  \item \code{\link{chordNotesByType}}
-  \item \code{\link{findPositions}}
-  \item \code{\link{makeFretboardString}}
-  \item \code{\link{drawNeck}}
-  \item \code{\link{plotFretboardByPosition}}
-  \item \code{\link{drawNotes}}
+     Assign scale notes to positions of a fretboard given instrument
+     parameters (number of strings, frets and tuning) and major or minor key.
+
+  \item \code{\link{diatonicChordNotes}}:
+     Find the notes of a diatonic chord within its scale, given the root
+     note.
+
+  \item \code{\link{chordNotesByType}}:
+     Get notes of an arbitrary chord, by root note and chord type, where
+    "arbitrary" means not necessarily diatonic to the underlying scale that
+    is specified by the first argument.
+
+  \item \code{\link{findPositions}}:
+     Find CAGED chord/scale positions along the fretboard for the present
+     scale.  (Position 1 is defined as the scale position where the chord
+     build on the tonic has the E shape.)
+
+  \item \code{\link{makeFretboardString}}:
+     Convert a set of notes on a fretboard to a string representation.
+
+  \item \code{\link{drawNeck}}:
+     Calculate fret spacing and draw an empty fretboard.
+
+  \item \code{\link{plotFretboardByPosition}}:
+     Plot whole fretboard with positions separated by offset; join the frets
+     in common.
+
+  \item \code{\link{drawNotes}}:
+     Add note markers and labels at particular locations to a fretboard plot.
+
 }
 }
 

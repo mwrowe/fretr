@@ -1,6 +1,6 @@
 #' Draw Notes on the Fretboard
 #'
-#' Add note markers at particular locations to a fretboard plot.
+#' Add note markers and labels at particular locations to a fretboard plot.
 #'
 #' @param notes
 #'    fretNotes object.

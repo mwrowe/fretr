@@ -1,4 +1,7 @@
-#' Plot whole fretboard with positions separated by offset; join frets in common
+#' Plot whole fretboard with positions separated by offset.
+#'
+#' Plot whole fretboard with positions separated by offset; join the frets in
+#' common.
 #'
 #' @param notes
 #'    A fretNotes object.

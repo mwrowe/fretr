@@ -1,4 +1,7 @@
-#' Assign scale notes to positions of a fretboard
+#' Assign Scale Notes To Positions of a Fretboard.
+#'
+#' Assign scale notes to positions of a fretboard given instrument parameters
+#' (number of strings, frets and tuning) and major or minor key.
 #
 #' @param n.frets
 #'    Integer; number of frets on the fretboard (not counting the nut).

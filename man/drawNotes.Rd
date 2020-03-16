@@ -31,7 +31,7 @@ be placed.}
 Returns TRUE upon completion.
 }
 \description{
-Add note markers at particular locations to a fretboard plot.
+Add note markers and labels at particular locations to a fretboard plot.
 }
 \author{
 M.W.Rowe, \email{mwr.stats@gmail.com}

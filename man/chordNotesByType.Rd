@@ -2,7 +2,7 @@
 % Please edit documentation in R/chordNotesByType.R
 \name{chordNotesByType}
 \alias{chordNotesByType}
-\title{Get notes of an arbitrary chord, without regards to underlaying scale/mode.}
+\title{Get notes of an arbitrary chord, by root note and chord type.}
 \usage{
 chordNotesByType(scalenotes, type = "maj", root)
 }
@@ -24,7 +24,9 @@ Returns a fretNotes (data.frame) object with the subset of the scalenotes
    plus named attributes "rootnote", "notes" (data.frame), "type" and "name".
 }
 \description{
-Get notes of an arbitrary chord, without regards to underlaying scale/mode.
+Get notes of an arbitrary chord, by root note and chord type, where
+"arbitrary" means not necessarily diatonic to the underlying scale that is
+specified by the first argument.
 }
 \author{
 M.W.Rowe, \email{mwr.stats@gmail.com}

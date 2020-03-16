@@ -1,4 +1,4 @@
-#' Find the notes of a diatonic chord within its scale, given the root note
+#' Find the notes of a diatonic chord within its scale, given the root note.
 #
 #' @param scalenotes
 #'    Data.frame() of notes assigned to each fretboard position, numbered and
