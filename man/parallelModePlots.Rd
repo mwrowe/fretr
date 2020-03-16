@@ -25,5 +25,5 @@ darkest: lydian, ionian, mixolydian, dorian, aeolian, phrygian, locrian.
 The goal is to relate the modes to each other.
 }
 \author{
-M.W.Rowe, \email{mike.rowe@gmail.com}
+M.W.Rowe, \email{mwr.stats@gmail.com}
 }

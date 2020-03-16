@@ -27,5 +27,5 @@ Returns a fretNotes (data.frame) object with the subset of the scalenotes
 Get notes of an arbitrary chord, without regards to underlaying scale/mode.
 }
 \author{
-M.W.Rowe, \email{mike.rowe@gmail.com}
+M.W.Rowe, \email{mwr.stats@gmail.com}
 }

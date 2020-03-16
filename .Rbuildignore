@@ -1,2 +1,8 @@
-^fretr\.Rproj$
+
+^.*\.Rproj$
 ^\.Rproj\.user$
+
+^input$
+^output$
+^scripts$
+^.idea$

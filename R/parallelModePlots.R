@@ -17,7 +17,7 @@
 #' @return
 #' Returns a fretnote object.
 #'
-#' @author M.W.Rowe, \email{mike.rowe@gmail.com}
+#' @author M.W.Rowe, \email{mwr.stats@gmail.com}
 #'
 #' @export
 #'

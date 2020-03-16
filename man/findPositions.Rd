@@ -29,5 +29,5 @@ Positions 2 thru 5 correspond to the CAGED D, C, A and G positions,
 respectively.
 }
 \author{
-M.W.Rowe, \email{mike.rowe@gmail.com}
+M.W.Rowe, \email{mwr.stats@gmail.com}
 }

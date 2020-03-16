@@ -1,6 +1,16 @@
-.Rproj.user
-# do not track documentation (man/*.Rd) or script output (*.pdf)
-/man
-.Rd
+# do not track script output (*.pdf)
 /output
+
+*.html
+*.tar.gz
 .pdf
+
+.DS_Store
+.Rd
+.RData
+.Rhistory
+.Rproj.user/
+.Ruserdata
+.project
+.idea
+

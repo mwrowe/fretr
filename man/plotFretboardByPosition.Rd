@@ -57,5 +57,5 @@ Returns frets.
 Plot whole fretboard with positions separated by offset; join frets in common
 }
 \author{
-M.W.Rowe, \email{mike.rowe@gmail.com}
+M.W.Rowe, \email{mwr.stats@gmail.com}
 }

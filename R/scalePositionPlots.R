@@ -24,7 +24,7 @@
 #'    Returns a fretNotes objects containing the all notes of the scale or
 #'    mode by fretboard position.
 #'
-#' @author M.W.Rowe, \email{mike.rowe@gmail.com}
+#' @author M.W.Rowe, \email{mwr.stats@gmail.com}
 #'
 #' @export
 #'

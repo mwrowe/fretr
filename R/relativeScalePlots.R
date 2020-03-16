@@ -7,11 +7,11 @@
 #' @param params
 #'    A list.
 #'
-#' @author M.W.Rowe, \email{mike.rowe@gmail.com}
+#' @author M.W.Rowe, \email{mwr.stats@gmail.com}
 #'
 #' @export
 #'
-relativeScalePlots_v2 <-
+relativeScalePlots <-
 function(tonic, pdffile, params=list()){
    bg.scalenum <-  c("black", "orange", "blue", "green3", "purple",
                      "forestgreen", "red")

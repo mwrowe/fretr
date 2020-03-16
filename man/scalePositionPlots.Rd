@@ -4,8 +4,13 @@
 \alias{scalePositionPlots}
 \title{Fretboard Maps of Diatonic Chords Within a Scale}
 \usage{
-scalePositionPlots(tonic, scale = "major", pdffile, in.context = FALSE,
-  chorder = "5ths")
+scalePositionPlots(
+  tonic,
+  scale = "major",
+  pdffile,
+  in.context = FALSE,
+  chorder = "5ths"
+)
 }
 \arguments{
 \item{tonic}{Character value specifying tonic note of scale or model}
@@ -33,5 +38,5 @@ Returns a fretNotes objects containing the all notes of the scale or
 Plot fretboards of a scale/mode, and its diatonic chords by position.
 }
 \author{
-M.W.Rowe, \email{mike.rowe@gmail.com}
+M.W.Rowe, \email{mwr.stats@gmail.com}
 }

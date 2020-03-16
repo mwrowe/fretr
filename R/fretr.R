@@ -6,11 +6,20 @@
 #' played, or relationships between scales, modes and chords.
 #'
 #' @section Fretboard Map Functions:
+#' Each of these functions generates a pdf file with sets of fretboards, chord
+#' or scale diagrams meant to illustrate particular relationships between
+#' the scales, chords and their notes.
+#'
 #' \itemize{
 #'   \item \code{\link{chordShapePlots}}:
+#'    Plot major and minor chord shapes of a given root, individually and within
+#'    the neck of a guitar with standard tuning.  Optionally sevenths of each
+#'    chord may be included. Six fretboards will be plotted.
 #'   \item \code{\link{parallelModePlots}}:
+#'      Plots seven fretboard maps showing all the modes of a given tonic note,
+#'      ordered such that only a single note differs between successive modes.
 #'   \item \code{\link{scalePositionPlots}}:
-#'   \item \code{\link{relativeScalePlots_v2}}:
+#'   \item \code{\link{relativeScalePlots}}:
 #' }
 #'
 #' @section Low-Level Functions:
@@ -20,7 +29,6 @@
 #'   \item \code{\link{chordNotesByType}}
 #'   \item \code{\link{findPositions}}
 #'   \item \code{\link{makeFretboardString}}
-#'
 #'   \item \code{\link{drawNeck}}
 #'   \item \code{\link{plotFretboardByPosition}}
 #'   \item \code{\link{drawNotes}}

@@ -31,7 +31,7 @@
 #'       \item \strong{fretrange}:
 #'    }
 #'
-#' @author M.W.Rowe, \email{mike.rowe@gmail.com}
+#' @author M.W.Rowe, \email{mwr.stats@gmail.com}
 #'
 #' @export
 #'

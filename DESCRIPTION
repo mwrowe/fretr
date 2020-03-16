@@ -1,11 +1,11 @@
 Package: fretr
 Title: Generate Fretboard Maps of Scales and Chords
-Version: 0.0.1.20190607
+Version: 0.1.0.20200316
 Authors@R: 
     person(given = "Michael",
            family = "Rowe",
            role = c("aut", "cre"),
-           email = "mike.rowe@gmail.com",
+           email = "mwr.stats@gmail.com",
            comment = c(ORCID = "0000-0002-7033-3340"))
 Description: 
    This package draws "fretboard maps", positions of notes along the fretboard
@@ -16,4 +16,4 @@ Depends: R (>= 3.3.0), utils, grDevices, graphics, stats
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2

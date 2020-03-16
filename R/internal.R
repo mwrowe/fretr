@@ -28,7 +28,7 @@
 #'    \item This may be slow when converting characters to codes(?)
 #'   }
 #'
-#' @author M.W.Rowe, \email{mike.rowe@gmail.com}
+#' @author M.W.Rowe, \email{mwr.stats@gmail.com}
 asciiToChar <-
 function(ascii.codes){
    if(is.numeric(ascii.codes)){
@@ -55,7 +55,7 @@ function(ascii.codes){
 #'
 #' @inheritParams base::as.character
 #'
-#' @author M.W.Rowe, \email{mike.rowe@gmail.com}
+#' @author M.W.Rowe, \email{mwr.stats@gmail.com}
 as.char <- function(x, ...) return(as.character(x, ...))
 #-------------------------------------------------------------------------------
 #' is.char: An Alias For is.character()
@@ -64,7 +64,7 @@ as.char <- function(x, ...) return(as.character(x, ...))
 #'
 #' @inheritParams base::is.character
 #'
-#' @author M.W.Rowe, \email{mike.rowe@gmail.com}
+#' @author M.W.Rowe, \email{mwr.stats@gmail.com}
 is.char <- function(x) return(is.character(x))
 #-------------------------------------------------------------------------------
 #' sym: Get A Numeric Range That Is Symmetric Around Zero
@@ -89,7 +89,7 @@ is.char <- function(x) return(is.character(x))
 #'    contains more than one value, a symmetric interval about zero that
 #'    contains the fraction of the data specified by qtile.
 #'
-#' @author M.W.Rowe, \email{mike.rowe@gmail.com}
+#' @author M.W.Rowe, \email{mwr.stats@gmail.com}
 sym <-
    function(lims=1, qtile=1){
       lims <- abs(lims)
@@ -117,7 +117,7 @@ sym <-
 #'    they are found in x.  The replicate numbers returned correspond to the
 #'    elements of x as it was passed in.
 #'
-#' @author M.W.Rowe, \email{mike.rowe@gmail.com}
+#' @author M.W.Rowe, \email{mwr.stats@gmail.com}
 numberReplicates <-
    # CREATED: 18SEP2014
    function(x, number.NAs=FALSE){
@@ -162,7 +162,7 @@ titleCaps <-
 #'    spaces will also be removed, and multiple adjacent spaces replaced with
 #'    a single space.
 #'
-#' @author M.W.Rowe, \email{mike.rowe@gmail.com}
+#' @author M.W.Rowe, \email{mwr.stats@gmail.com}
 #'
 function(x,lower.too=TRUE,except=c()){
    y <- x

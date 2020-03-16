@@ -4,8 +4,14 @@
 \alias{drawNotes}
 \title{Draw Notes on the Fretboard}
 \usage{
-drawNotes(notes, frets.at, label = "note", cex.pt = 1.6,
-  cex.label = 0.6, from.fret)
+drawNotes(
+  notes,
+  frets.at,
+  label = "note",
+  cex.pt = 1.6,
+  cex.label = 0.6,
+  from.fret
+)
 }
 \arguments{
 \item{notes}{fretNotes object.}
@@ -28,5 +34,5 @@ Returns TRUE upon completion.
 Add note markers at particular locations to a fretboard plot.
 }
 \author{
-M.W.Rowe, \email{mike.rowe@gmail.com}
+M.W.Rowe, \email{mwr.stats@gmail.com}
 }

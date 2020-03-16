@@ -4,8 +4,13 @@
 \alias{drawNeck}
 \title{Draw A Fretboard}
 \usage{
-drawNeck(frets, fret.space = "between", fret.range, decorations = TRUE,
-  scale.length = 25.5)
+drawNeck(
+  frets,
+  fret.space = "between",
+  fret.range,
+  decorations = TRUE,
+  scale.length = 25.5
+)
 }
 \arguments{
 \item{frets}{Data.frame returned by fretNotes() function, which will specify numbers
@@ -28,5 +33,5 @@ Returns a named vector of the fret positions, with names from "0".
 Calculate fret spacing and draw an empty fretboard.
 }
 \author{
-M.W.Rowe, \email{mike.rowe@gmail.com}
+M.W.Rowe, \email{mwr.stats@gmail.com}
 }

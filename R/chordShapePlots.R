@@ -1,7 +1,17 @@
 #' Plot Major and Minor Chord Shapes by Fretboard Position
 #'
-#' Plot major and minor chord shapes, individually and within neck
-#
+#' Plot major and minor chord shapes of a given root, individually and within
+#' the neck of a guitar with standard tuning.  Optionally sevenths of each chord
+#' may be included. Six fretboards will be plotted:
+#' \itemize{
+#'   \item All the notes of major pentatonic scale along the neck.
+#'   \item All the major chord tones along the neck.
+#'   \item Major chord diagrams for each of the CAGED chord shapes.
+#'   \item Minor chord diagrams for each of the CAGED chord shapes.
+#'   \item All the minor chord tones along the neck.
+#'   \item All the notes of minor pentatonic scale along the neck.
+#' }
+#'
 #' @param tonic
 #'    Character value specifying root note of chord and tonic of scale.
 #' @param pdffile
@@ -18,7 +28,7 @@
 #' @return
 #'    Returns the notes of the chords as a fretNotes object.
 #'
-#' @author M.W.Rowe, \email{mike.rowe@gmail.com}
+#' @author M.W.Rowe, \email{mwr.stats@gmail.com}
 #'
 #' @export
 #'
@@ -41,7 +51,7 @@ function(tonic, pdffile, in.context=TRUE, seven=F){
       "cornflowerblue",           #10: 6th
       "orange",           #11: minor 7th
       "gray70")           #12: 7th
-   # set up the graphics device to plot 8 fretboards
+   # set up the graphics device to plot 6 fretboards
    if(missing(pdffile)){
       pdffile <- paste0(tonic, ifelse(seven, "7", ""), " chord shapes.pdf")
    }

@@ -19,7 +19,7 @@
 #' @return
 #'    Returns a named vector of the fret positions, with names from "0".
 #'
-#' @author M.W.Rowe, \email{mike.rowe@gmail.com}
+#' @author M.W.Rowe, \email{mwr.stats@gmail.com}
 #'
 #' @export
 drawNeck <-

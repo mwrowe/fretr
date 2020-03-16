@@ -25,5 +25,5 @@ Returns a fretNotes (data.frame) object with the subset of the scalenotes
 Find the notes of a diatonic chord within its scale, given the root note
 }
 \author{
-M.W.Rowe, \email{mike.rowe@gmail.com}
+M.W.Rowe, \email{mwr.stats@gmail.com}
 }

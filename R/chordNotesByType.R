@@ -18,7 +18,7 @@ chordNotesByType <-
 #'    argument found in the specified chord, with a "chordnum" column appended,
 #'    plus named attributes "rootnote", "notes" (data.frame), "type" and "name".
 #'
-#' @author M.W.Rowe, \email{mike.rowe@gmail.com}
+#' @author M.W.Rowe, \email{mwr.stats@gmail.com}
 #'
 #' @export
 #'

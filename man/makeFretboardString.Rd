@@ -22,5 +22,5 @@ Returns a named vector, with attribute "fret.range".
 Convert a set of notes on a fretboard to a string representation.
 }
 \author{
-M.W.Rowe, \email{mike.rowe@gmail.com}
+M.W.Rowe, \email{mwr.stats@gmail.com}
 }
