@@ -1,7 +1,7 @@
 # do not track script output (*.pdf)
 /output
 
-*.html
+#*.html
 *.tar.gz
 .pdf
 
