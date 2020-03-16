@@ -35,7 +35,13 @@ Returns a fretNotes objects containing the all notes of the scale or
    mode by fretboard position.
 }
 \description{
-Plot fretboards of a scale/mode, and its diatonic chords by position.
+Plots fretboards of a scale/mode, and its diatonic chords by position.  On
+the first fretboard, all of the notes of the scale are shown for the whole
+neck. In the second column, the notes of the scale are shown broken out by
+CAGED position on the neck. Next the notes of the major pentatonic scale for
+each position are shown.  The remaining seven columns show the CAGED chord
+shapes at each position, with the dominant 7th substituted for the diminished
+chord.
 }
 \author{
 M.W.Rowe, \email{mwr.stats@gmail.com}

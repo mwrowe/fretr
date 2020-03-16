@@ -16,7 +16,9 @@ to generate.}
 }
 \description{
 Plot fretboards of a scale/mode, and its diatonic chords by position
-(alternate version.)
+(alternate version.)  This is a work in progress... or maybe just something I
+was playing around with that turned out to be a dead end... Currently not
+exported for that reason.
 }
 \author{
 M.W.Rowe, \email{mwr.stats@gmail.com}

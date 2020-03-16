@@ -15,11 +15,19 @@
 #'    Plot major and minor chord shapes of a given root, individually and within
 #'    the neck of a guitar with standard tuning.  Optionally sevenths of each
 #'    chord may be included. Six fretboards will be plotted.
+#'
+#'   \item \code{\link{scalePositionPlots}}:
+#'      Plots fretboards of a scale/mode, and its diatonic chords by position.
+#'      On the first fretboard, all of the notes of the scale are shown for the
+#'      whole neck. In the second column, the notes of the scale are shown
+#'      broken out by CAGED position on the neck. Next the notes of the major
+#'      pentatonic scale for each position are shown.  The remaining seven
+#'      columns show the CAGED chord shapes at each position, with the dominant
+#'      7th substituted for the diminished chord.
+#'
 #'   \item \code{\link{parallelModePlots}}:
 #'      Plots seven fretboard maps showing all the modes of a given tonic note,
 #'      ordered such that only a single note differs between successive modes.
-#'   \item \code{\link{scalePositionPlots}}:
-#'   \item \code{\link{relativeScalePlots}}:
 #' }
 #'
 #' @section Low-Level Functions:

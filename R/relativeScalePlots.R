@@ -1,15 +1,15 @@
 #' Relative Scale Fretboard Maps (version 2)
 #'
 #' Plot fretboards of a scale/mode, and its diatonic chords by position
-#' (alternate version.)
+#' (alternate version.)  This is a work in progress... or maybe just something I
+#' was playing around with that turned out to be a dead end... Currently not
+#' exported for that reason.
 #'
 #' @inheritParams parallelModePlots
 #' @param params
 #'    A list.
 #'
 #' @author M.W.Rowe, \email{mwr.stats@gmail.com}
-#'
-#' @export
 #'
 relativeScalePlots <-
 function(tonic, pdffile, params=list()){
